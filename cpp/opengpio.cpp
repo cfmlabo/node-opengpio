@@ -15,7 +15,7 @@ Napi::Array GpioInput(Napi::CallbackInfo const &info)
 
     // Resources
     ::gpiod::line_request *request = nullptr;
-    std::string consumer_name = "opengpio_" + chip_path + "_" + to_string(line_offset) + "_input";
+    std::string consumer_name = "opengpio_gpiochip" + to_string(chip_number) + "_" + to_string(line_offset) + "_input";
 
     // Setup
     try
@@ -72,7 +72,7 @@ Napi::Array GpioOutput(Napi::CallbackInfo const &info)
 
     // Resources
     ::gpiod::line_request *request = nullptr;
-    std::string consumer_name = "opengpio_" + chip_path + "_" + to_string(line_offset) + "_output";
+    std::string consumer_name = "opengpio_gpiochip" + to_string(chip_number) + "_" + to_string(line_offset) + "_output";
 
     // Setup
     try
@@ -136,7 +136,7 @@ Napi::Array GpioWatch(Napi::CallbackInfo const &info)
 
     // Resources
     ::gpiod::line_request *request = nullptr;
-    string consumer_name = "opengpio_" + chip_path + "_" + to_string(line_offset) + "_watch";
+    string consumer_name = "opengpio_gpiochip" + to_string(chip_number) + "_" + to_string(line_offset) + "_watch";
     Napi::ThreadSafeFunction thread_safe_watch_callback = Napi::ThreadSafeFunction::New(
         info.Env(), watch_callback, consumer_name + "_callback", 0, 1, [](Napi::Env) {});
 
@@ -275,7 +275,7 @@ Napi::Array GpioPwm(Napi::CallbackInfo const &info)
 
     // Resources
     ::gpiod::line_request *request = nullptr;
-    string consumer_name = "opengpio_" + chip_path + "_" + to_string(line_offset) + "_pwm";
+    string consumer_name = "opengpio_gpiochip" + to_string(chip_number) + "_" + to_string(line_offset) + "_pwm";
 
     // Setup
     try
